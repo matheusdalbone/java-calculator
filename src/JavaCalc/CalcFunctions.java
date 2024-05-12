@@ -120,8 +120,14 @@ public class CalcFunctions {
 		String num = UI.getDisplay().getText();
 		if(!(num.endsWith(" - ")) & !(num.equals(""))) {
 			num1 = Double.parseDouble(UI.getDisplay().getText());
-			UI.getDisplay().setText("");
-			operators = "-";
+			if(!(operators.equalsIgnoreCase(""))) {
+				num2 = Double.parseDouble(num);				
+				calculate(num);
+				operators = "";
+			} else {
+				UI.getDisplay().setText("");
+				operators = "-";
+			}
 		}
 	}
 	
@@ -131,9 +137,6 @@ public class CalcFunctions {
 			num1 = Double.parseDouble(UI.getDisplay().getText());
 			UI.getDisplay().setText("");
 			operators = "+";
-			if(!(operators.equals(""))) {
-				
-			}
 		}
 	}
 	
@@ -173,8 +176,11 @@ public class CalcFunctions {
 		switch(operators) {
 		case "+": 
 			result = num1 + num2;
-			System.out.println(num1 + "  " + num2);
 			num = String.valueOf(result);
+			if(num.endsWith(".0")) {
+				long resultFixed = (long) (result);
+				num = String.valueOf(resultFixed);
+			}
 			UI.getDisplay().setText(num);
 			num1 = 0;
 			num2 = 0;
@@ -184,6 +190,10 @@ public class CalcFunctions {
 		case "-":
 			result = num1 - num2;
 			num = String.valueOf(result);
+			if(num.endsWith(".0")) {
+				long resultFixed = (long) (result);
+				num = String.valueOf(resultFixed);
+			}
 			UI.getDisplay().setText(num);
 			num1 = 0;
 			num2 = 0;
@@ -193,6 +203,10 @@ public class CalcFunctions {
 		case "*":
 			result = num1 * num2;
 			num = String.valueOf(result);
+			if(num.endsWith(".0")) {
+				long resultFixed = (long) (result);
+				num = String.valueOf(resultFixed);
+			}
 			UI.getDisplay().setText(num);
 			num1 = 0;
 			num2 = 0;
@@ -202,6 +216,10 @@ public class CalcFunctions {
 		case "/":
 			result = num1 / num2;
 			num = String.valueOf(result);
+			if(num.endsWith(".0")) {
+				long resultFixed = (long) (result);
+				num = String.valueOf(resultFixed);
+			}
 			UI.getDisplay().setText(num);
 			num1 = 0;
 			num2 = 0;
@@ -211,6 +229,10 @@ public class CalcFunctions {
 		case "%": 
 			result = (num1 / 100) * num2;
 			num = String.valueOf(result);
+			if(num.endsWith(".0")) {
+				long resultFixed = (long) (result);
+				num = String.valueOf(resultFixed);
+			}
 			UI.getDisplay().setText(num);
 			num1 = 0;
 			num2 = 0;
